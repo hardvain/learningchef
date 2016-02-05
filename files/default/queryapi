@@ -1,0 +1,81 @@
+#!/bin/bash
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+queryapi_HOME=/home/vagrant/queryapi
+exec="$queryapi_HOME/bin/run_queryapi.sh"
+LOCK="/var/lock/subsys/queryapi"
+export queryapi_HOME
+
+RETVAL=0
+
+pid_of_queryapi() {
+    pgrep -f "java.*queryapi"
+}
+
+start() {
+
+    echo -n $"Starting queryapi: "
+
+    cd "$queryapi_HOME"
+    daemon  $exec >/dev/null &
+    pid_of_queryapi > /dev/null
+    RETVAL=$?
+    [ $RETVAL = 0 ] && success $"$STRING" || failure $"$STRING"
+    echo
+
+    [ $RETVAL = 0 ] && touch "$LOCK"
+}
+
+stop() {
+    echo -n "Stopping queryapi: "
+    pid=`pid_of_queryapi`
+    kill $pid
+    RETVAL=$?
+    cnt=10
+    while [ $RETVAL = 0 -a $cnt -gt 0 ] &&
+        { pid_of_queryapi> /dev/null ; } ; do
+            sleep 1
+            ((cnt--))
+    done
+
+    [ $RETVAL = 0 ] && rm -f "$LOCK"
+    [ $RETVAL = 0 ] && success $"$STRING" || failure $"$STRING"
+    echo
+}
+
+status() {
+    pid=`pid_of_queryapi`
+    if [ -n "$pid" ]; then
+        echo "queryapi (pid $pid) is running..."
+        return 0
+    fi
+    if [ -f "$LOCK" ]; then
+        echo $"${base} dead but subsys locked"
+        return 2
+    fi
+    echo "queryapi is stopped"
+    return 3
+}
+
+# See how we were called.
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit $RETVAL
