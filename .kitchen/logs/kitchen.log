@@ -1,0 +1,29 @@
+I, [2016-02-05T13:05:16.902218 #72398]  INFO -- Kitchen: -----> Starting Kitchen (v1.4.2)
+E, [2016-02-05T13:05:16.902620 #72398] ERROR -- Kitchen: ------Exception-------
+E, [2016-02-05T13:05:16.902662 #72398] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2016-02-05T13:05:16.902721 #72398] ERROR -- Kitchen: Message: Kitchen YAML file /Users/aravindh/Desktop/learningchef/.kitchen.yml does not exist.
+E, [2016-02-05T13:05:16.902754 #72398] ERROR -- Kitchen: ------Backtrace-------
+E, [2016-02-05T13:05:16.902792 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/loader/yaml.rb:74:in `read'
+E, [2016-02-05T13:05:16.902832 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:145:in `data'
+E, [2016-02-05T13:05:16.902878 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:124:in `suites'
+E, [2016-02-05T13:05:16.902900 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:175:in `filter_instances'
+E, [2016-02-05T13:05:16.902921 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:134:in `build_instances'
+E, [2016-02-05T13:05:16.902942 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:110:in `instances'
+E, [2016-02-05T13:05:16.902963 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/command.rb:115:in `filtered_instances'
+E, [2016-02-05T13:05:16.902985 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/command.rb:145:in `parse_subcommand'
+E, [2016-02-05T13:05:16.903006 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/command/action.rb:38:in `block in call'
+E, [2016-02-05T13:05:16.903027 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/2.1.0/benchmark.rb:279:in `measure'
+E, [2016-02-05T13:05:16.903048 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/command/action.rb:37:in `call'
+E, [2016-02-05T13:05:16.903069 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:56:in `perform'
+E, [2016-02-05T13:05:16.903090 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:171:in `block (2 levels) in <class:CLI>'
+E, [2016-02-05T13:05:16.903111 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/thor-0.19.1/lib/thor/command.rb:27:in `run'
+E, [2016-02-05T13:05:16.903132 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/thor-0.19.1/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2016-02-05T13:05:16.903182 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:308:in `invoke_task'
+E, [2016-02-05T13:05:16.903203 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/thor-0.19.1/lib/thor.rb:359:in `dispatch'
+E, [2016-02-05T13:05:16.903224 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+E, [2016-02-05T13:05:16.903245 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/bin/kitchen:13:in `block in <top (required)>'
+E, [2016-02-05T13:05:16.903266 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/lib/kitchen/errors.rb:154:in `with_friendly_errors'
+E, [2016-02-05T13:05:16.903287 #72398] ERROR -- Kitchen: /opt/chefdk/embedded/lib/ruby/gems/2.1.0/gems/test-kitchen-1.4.2/bin/kitchen:13:in `<top (required)>'
+E, [2016-02-05T13:05:16.903308 #72398] ERROR -- Kitchen: /usr/local/bin/kitchen:14:in `load'
+E, [2016-02-05T13:05:16.903328 #72398] ERROR -- Kitchen: /usr/local/bin/kitchen:14:in `<main>'
+E, [2016-02-05T13:05:16.903348 #72398] ERROR -- Kitchen: ----------------------

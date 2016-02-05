@@ -3,7 +3,6 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-include_recipe "java"
 
 cookbook_file '/home/vagrant/queryapi.zip' do
   source 'queryapi-0.2.0.zip'
