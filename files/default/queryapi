@@ -2,7 +2,7 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-queryapi_HOME=/home/vagrant/queryapi
+queryapi_HOME=/home/ec2-user/queryapi
 exec="$queryapi_HOME/bin/run_queryapi.sh"
 LOCK="/var/lock/subsys/queryapi"
 export queryapi_HOME
