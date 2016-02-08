@@ -7,12 +7,9 @@
 remote_file '/home/ec2-user/queryapi.zip' do
   source 'https://s3.amazonaws.com/espoc-apps/queryapi-0.2.0.zip'
   action :create
-end
-
-cookbook_file '/home/ec2-user/queryapi.zip' do
-  source 'queryapi-0.2.0.zip'
   mode '0644'
 end
+
 
 cookbook_file '/etc/init.d/queryapi' do
   source 'queryapi'
