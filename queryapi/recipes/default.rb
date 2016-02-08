@@ -43,6 +43,9 @@ execute 'make run script executable' do
 end
 
 execute 'stop app' do
-  # command 'service queryapi restart'
+  command 'ps aux | grep -ie queryapi | awk '{print "kill -9 " $2}''
+end
+
+execute 'start app' do
   command '/bin/bash queryapi/bin/run_queryapi.sh > /dev/null 2>&1 &'
 end
