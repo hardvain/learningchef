@@ -42,7 +42,7 @@ execute 'make run script executable' do
   command 'chmod u+x /home/ec2-user/queryapi/bin/run_queryapi.sh'
 end
 
-execute 'stop app' do
-  # command 'service queryapi restart'
-  command '/bin/bash /home/ec2-user/queryapi/bin/run_queryapi.sh'
-end
+# execute 'stop app' do
+#   # command 'service queryapi restart'
+#   command '/bin/bash /home/ec2-user/queryapi/bin/run_queryapi.sh'
+# end
