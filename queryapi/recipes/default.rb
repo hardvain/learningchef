@@ -42,10 +42,7 @@ execute 'make run script executable' do
   command 'chmod u+x /home/ec2-user/queryapi/bin/run_queryapi.sh'
 end
 
-execute 'stop app' do
-  command "$(pgrep -f queryapi)"
-end
 
-execute 'start app' do
-  command '/bin/bash queryapi/bin/run_queryapi.sh > /dev/null 2>&1 &'
+execute 'restart app' do
+  command 'service queryapi restart'
 end
