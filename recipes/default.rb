@@ -4,10 +4,9 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 Chef::Log.level = :debug
-p node[:deploy]
+include_recipe 'deploy'
 log 'message' do
-  message 'aravindh'
-  message node[:deploy]
+  message "path = #{node[:deploy]}"
   level :info
 end
 cookbook_file '/home/ec2-user/queryapi.zip' do
