@@ -4,7 +4,12 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 Chef::Log.level = :debug
-
+p node[:deploy]
+log 'message' do
+  message 'aravindh'
+  message node[:deploy]
+  level :info
+end
 cookbook_file '/home/ec2-user/queryapi.zip' do
   source 'queryapi-0.2.0.zip'
   mode '0644'
