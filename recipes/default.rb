@@ -42,9 +42,6 @@ execute 'make run script executable' do
 end
 
 execute 'stop app' do
-  command 'service queryapi restart'
+  # command 'service queryapi restart'
+  command '/bin/bash /home/ec2-user/queryapi/bin/run_queryapi.sh'
 end
-
-# execute 'start app' do
-#   command 'service queryapi start'
-# end
