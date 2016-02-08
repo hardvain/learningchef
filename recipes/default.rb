@@ -3,6 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
+include_recipe 'java_se'
 
 remote_file '/home/ec2-user/queryapi.zip' do
   source 'https://s3.amazonaws.com/espoc-apps/queryapi-0.2.0.zip'
