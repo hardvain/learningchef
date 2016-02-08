@@ -3,12 +3,12 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-Chef::Log.level = :debug
-include_recipe 'deploy'
-log 'message' do
-  message "path = #{node[:deploy]}"
-  level :info
+
+remote_file '/home/ec2-user/queryapi.zip' do
+  source 'https://s3.amazonaws.com/espoc-apps/queryapi-0.2.0.zip'
+  action :create
 end
+
 cookbook_file '/home/ec2-user/queryapi.zip' do
   source 'queryapi-0.2.0.zip'
   mode '0644'
