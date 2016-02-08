@@ -43,7 +43,7 @@ execute 'make run script executable' do
 end
 
 execute 'stop app' do
-  command 'ps aux | grep -ie queryapi | awk '{print "kill -9 " $2}''
+  command "ps aux | grep -ie queryapi | awk '{print \"kill -9 \" $2}'"
 end
 
 execute 'start app' do
