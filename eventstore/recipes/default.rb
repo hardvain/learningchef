@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-
+Chef::Log.level = :debug
 
 
 template "/etc/init.d/#{node[:module][:name]}" do

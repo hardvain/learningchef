@@ -31,7 +31,7 @@ stop() {
     kill $pid
     retval=$?
     echo
-    [ $retval -eq 0 ] 
+    [ $retval -eq 0 ] && (success $"$STRING" || failure $"$STRING")
     return $retval
 }
 
