@@ -8,7 +8,7 @@
 
 template "/etc/init.d/#{node[:module][:name]}" do
   source 'init_script.erb'
-  mode '0755'
+  mode '0644'
   variables({
      :module_name => "#{node[:module][:name]}",
      :module_path => "#{node[:module][:path]}",
@@ -50,9 +50,9 @@ execute 'make module path writeable for all' do
 end
 
 execute 'make lock file writable' do
-  command "chmod -R 777 /var/lock/subsys/#{node[:module][:name]}"
+  command "chmod 777 /var/lock/subsys/#{node[:module][:name]}"
 end
 
 execute 'restart app' do
-  command "sudo service #{node[:module][:name]} restart"
+  command "service #{node[:module][:name]} restart"
 end
