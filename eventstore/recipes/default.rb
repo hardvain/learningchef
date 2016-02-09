@@ -47,5 +47,5 @@ end
 
 
 execute 'restart app' do
-  command "service #{node[:module][:name]} restart"
+  command "sudo service #{node[:module][:name]} restart"
 end
