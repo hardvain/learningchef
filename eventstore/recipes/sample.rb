@@ -43,6 +43,11 @@ execute 'unzip' do
   command "unzip -o #{node[:module][:path]}.zip -d #{node[:module][:path]}"
 end
 
+
+execute 'Make module path accessible' do
+  command "chmod 757 -R #{node[:module][:path]}"
+end
+
 remote_file "#{node[:module][:path]}/conf/config.hocon" do
   source "file://#{node[:module][:path]}/conf/config.hocon.sample"
 end
