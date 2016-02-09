@@ -4,7 +4,6 @@
 
 <%= @module_name%>_home=<%= @module_path%>
 exec="<%= @module_executable%>"
-LOCK="<%= @module_path%>/lock"
 export <%= @module_name%>_home
 
 RETVAL=0
@@ -32,7 +31,7 @@ stop() {
     kill $pid
     retval=$?
     echo
-    [ $retval -eq 0 ] && rm -f $LOCK
+    [ $retval -eq 0 ] 
     return $retval
 }
 
@@ -42,10 +41,6 @@ status() {
     if [ -n "$pid" ]; then
         echo "<%= @module_name%> (pid $pid) is running..."
         return 0
-    fi
-    if [ -f "$LOCK" ]; then
-        echo $"${base} dead but subsys locked"
-        return 2
     fi
     echo "<%= @module_name%> is stopped"
     return 3

@@ -44,10 +44,8 @@ end
 execute 'make run script executable' do
   command "chmod u+x #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
 end
-execute 'kill app' do
-  command "pgrep -f 'java.*#{node[:module][:name]}' | xargs sudo kill"
-end
+
 
 execute 'start app' do
-  command "#{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh /dev/null 2>&1 &"
+  command "sudo service #{node[:module][:name]} restart"
 end
