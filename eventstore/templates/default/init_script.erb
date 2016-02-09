@@ -4,7 +4,7 @@
 
 <%= @module_name%>_home=<%= @module_path%>
 exec="<%= @module_executable%>"
-LOCK="/var/lock/subsys/<%= @module_name%>"
+LOCK="<%= module_path%>/lock"
 export <%= @module_name%>_home
 
 RETVAL=0
