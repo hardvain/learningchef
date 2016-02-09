@@ -20,7 +20,7 @@ start() {
     $exec > /dev/null 2>&1 &
     pid_of_module > /dev/null
     echo
-    [ $RETVAL -eq 0 ] && touch $LOCK && (success $"$STRING" || failure $"$STRING")
+    [ $RETVAL -eq 0 ] && (success $"$STRING" || failure $"$STRING")
 
     return $RETVAL
 }
