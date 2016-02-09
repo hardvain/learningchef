@@ -1,0 +1,74 @@
+#!/bin/bash
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+<%= @module_name%>_home=<%= @module_path%>
+exec="<%= @module_executable%>"
+LOCK="/var/lock/subsys/<%= @module_name%>"
+export <%= @module_name%>_home
+
+RETVAL=0
+
+pid_of_module() {
+    pgrep -f "java.*<%= @module_name%>"
+}
+
+start() {
+
+    echo -n $"Starting <%= @module_name%>: "
+
+    cd "$<%= @module_name%>_home"
+    $exec > /dev/null 2>&1 &
+    pid_of_module > /dev/null
+    echo
+    [ $RETVAL -eq 0 ] && touch $LOCK && (success $"$STRING" || failure $"$STRING")
+
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping <%= @module_name%>: "
+    pid=`pid_of_module`
+    kill $pid
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $LOCK
+    return $retval
+}
+
+
+status() {
+    pid=`pid_of_module`
+    if [ -n "$pid" ]; then
+        echo "<%= @module_name%> (pid $pid) is running..."
+        return 0
+    fi
+    if [ -f "$LOCK" ]; then
+        echo $"${base} dead but subsys locked"
+        return 2
+    fi
+    echo "<%= @module_name%> is stopped"
+    return 3
+}
+
+# See how we were called.
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit $RETVAL

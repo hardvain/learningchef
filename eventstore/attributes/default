@@ -1,0 +1,3 @@
+default['module']['name'] = 'queryapi'
+default['module']['path'] = '/home/ec2-user/queryapi'
+default['module']['executable_path'] = '/home/ec2-user/queryapi/bin/run_queryapi.sh'

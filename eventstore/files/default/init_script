@@ -27,7 +27,7 @@ start() {
 }
 
 stop() {
-    echo -n $"Stopping $exec: "
+    echo -n $"Stopping queryapi: "
     pid=`pid_of_queryapi`
    kill $pid
     retval=$?
