@@ -27,22 +27,22 @@ end
 
 directory "#{node[:module][:path]}"
 
-remote_file "#{node[:module][:path]}/#{node[:module][:name]}.zip" do
+remote_file "#{node[:module][:path]}.zip" do
   source "https://s3.amazonaws.com/espoc-apps/#{node[:module][:name]}.zip"
   action :create
   mode '0644'
 end
 
 execute 'unzip' do
-  command "unzip -o #{node[:module][:path]}/#{node[:module][:name]}.zip -d #{node[:module][:path]}/#{node[:module][:name]}"
+  command "unzip -o #{node[:module][:path]}.zip -d #{node[:module][:path]}"
 end
 
-remote_file "#{node[:module][:path]}/#{node[:module][:name]}/conf/config.hocon" do
-  source "file://#{node[:module][:path]}/#{node[:module][:name]}/conf/config.hocon.sample"
+remote_file "#{node[:module][:path]}/conf/config.hocon" do
+  source "file://#{node[:module][:path]}/conf/config.hocon.sample"
 end
 
 execute 'make run script executable' do
-  command "chmod u+x #{node[:module][:path]}/#{node[:module][:name]}/bin/run_queryapi.sh"
+  command "chmod u+x #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
 end
 
 
