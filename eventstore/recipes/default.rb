@@ -42,10 +42,12 @@ remote_file "#{node[:module][:path]}/conf/config.hocon" do
 end
 
 execute 'make run script executable' do
+  user "root"
   command "chmod u+x #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
 end
 
 
 execute 'start app' do
-  command "sudo service #{node[:module][:name]} restart"
+  user "root"
+  command "service #{node[:module][:name]} restart"
 end
