@@ -8,7 +8,7 @@
 
 template "/etc/init.d/#{node[:module][:name]}" do
   source 'init_script.erb'
-  mode '0644'
+  mode 'u+x'
   variables({
      :module_name => "#{node[:module][:name]}",
      :module_path => "#{node[:module][:path]}",
