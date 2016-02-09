@@ -45,6 +45,13 @@ execute 'make run script executable' do
   command "chmod u+x #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
 end
 
+execute 'make module path writeable for all' do
+  command "chmod -R 777 #{node[:module][:path]}"
+end
+
+execute 'make lock file writable' do
+  command "chmod -R 777 /var/lock/subsys/#{node[:module][:name]}"
+end
 
 execute 'restart app' do
   command "sudo service #{node[:module][:name]} restart"
