@@ -11,8 +11,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[eventstore::collector]
-      - recipe[eventstore::field_mapper]
-      - recipe[eventstore::bad_event_logger]
       - recipe[eventstore::queryapi]
     attributes: {user: "vagrant"}
