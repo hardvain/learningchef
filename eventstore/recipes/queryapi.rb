@@ -1,5 +1,5 @@
 module_name = "queryapi"
-user = "ec2-user"
+user = "vagrant"
 node.default['module']['name'] = module_name
 node.default['module']['path'] = "/home/#{user}/#{module_name}"
 node.default['module']['executable_path'] = "/home/#{user}/#{module_name}/bin/run_#{module_name}.sh"
