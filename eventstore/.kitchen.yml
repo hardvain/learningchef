@@ -11,5 +11,8 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[eventstore::default]
-    attributes: {module: {name: "queryapi",path: "/home/vagrant/queryapi",executable_path: "/home/vagrant/queryapi/bin/run_queryapi.sh"}}
+      - recipe[eventstore::collector]
+      - recipe[eventstore::field_mapper]
+      - recipe[eventstore::bad_event_logger]
+      - recipe[eventstore::queryapi]
+    attributes: {user: "vagrant"}
