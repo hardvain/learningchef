@@ -34,12 +34,12 @@ execute 'upload config to s3' do
   command "aws s3 cp #{node[:module][:path]}/conf/config.hocon s3://espoc-apps/#{node[:module][:name]}/config.hocon --acl public-read-write"
 end
 
-template "#{node[:module][:path]}/emr" do
+template "#{node[:module][:path]}/emr.sh" do
   source 'emr.erb'
   mode '0755'
   variables({
-     :cluster-id => "#{node[:module][:cluster-id]}",
-     :queue-url => "#{node[:module][:queue-url]}"
+     :cluster_id => "#{node[:module][:cluster_id]}",
+     :queue_url => "#{node[:module][:queue_url]}"
   })
 end
 
