@@ -1,0 +1,9 @@
+#!/bin/sh
+
+aws emr list-steps --cluster-id  <%= @cluster-id%> --step-states RUNNING --region us-east-1 > steps.json
+length=($(jq -r '."Steps" | length' steps.json))
+echo $length
+for ((i=1;i<=$length;i++)); do
+    aws sqs send-message --queue-url <%= @queue-url%> --message-body 'Shutdown from Chef' --region us-east-1
+done
+
