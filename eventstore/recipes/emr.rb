@@ -18,7 +18,7 @@ remote_file "#{node[:module][:path]}.zip" do
   mode '0644'
 end
 
-execute 'unzip' do 
+execute 'unzip' do
   command "unzip -o #{node[:module][:path]}.zip -d #{node[:module][:path]}"
 end
 
@@ -44,14 +44,14 @@ template "#{node[:module][:path]}/emr.sh" do
 end
 
 execute 'make run script executable' do
-  command "chmod u+x #{node[:module][:path]}/emr"
+  command "chmod u+x #{node[:module][:path]}/emr.sh"
 end
 
 execute 'stop running steps' do
-  command "#{node[:module][:path]}/emr"
+  command "#{node[:module][:path]}/emr.sh"
 end
 
 
 execute 'add step to emr' do
-  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
+  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh > #{node[:module][:path]}/step.json"
 end
