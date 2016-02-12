@@ -10,7 +10,8 @@ execute 'make run script executable' do
   command "chmod u+x #{node[:module][:path]}/bin/data_load.sh"
 end
 
-
-execute 'make run script executable' do
+cron 'start cron' do
+  hour '5'
+  minute '0'
   command "#{node[:module][:path]}/bin/data_load.sh"
 end
