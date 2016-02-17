@@ -1,0 +1,30 @@
+field_mapper {
+  server {
+    host = "0.0.0.0"
+    port = "9090"
+  }
+  aws {
+    access_key = "iam"
+    secret_key = "iam"
+  }
+  dynamodb {
+    table_name = "FieldMapper"
+    field_names {
+      partition_key = "_ga"
+      sort_key = "_eventName"
+      version = "_version"
+      next_string_index = "_stringIndex"
+      next_numeric_index = "_numericIndex"
+    }
+  }
+  mapping {
+    string_fields {
+      field_prefix = "ffs_"
+      max_fields = 50
+    }
+    numeric_fields {
+      field_prefix = "ffn_"
+      max_fields = 50
+    }
+  }
+}

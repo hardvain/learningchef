@@ -42,8 +42,10 @@ execute 'Make module path accessible' do
   command "chmod 757 -R #{node[:module][:path]}"
 end
 
-remote_file "#{node[:module][:path]}/conf/config.hocon" do
-  source "file://#{node[:module][:path]}/conf/config.hocon.sample"
+template "#{node[:module][:path]}/conf/config.hocon" do
+  source "#{node[:module][:name]}.config.hocon.erb"
+  mode '0755'
+  variables({})
 end
 
 execute 'make run script executable' do
@@ -52,5 +54,6 @@ execute 'make run script executable' do
 end
 
 execute 'start app' do
+  user "node[:user]"
   command "service #{node[:module][:name]} restart"
 end

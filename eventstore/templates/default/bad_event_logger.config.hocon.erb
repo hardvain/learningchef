@@ -1,0 +1,26 @@
+bad_event_logger {
+    appName = BadEventLoggerApp
+
+    # AWS credentials
+    #
+    # If both are set to 'cpf', a properties file on the classpath is used.
+    # http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/ClasspathPropertiesFileCredentialsProvider.html
+    #
+    # If both are set to 'iam', use AWS IAM Roles to provision credentials.
+    #
+    # If both are set to 'env', use environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+    aws {
+        accessKey = "iam"
+        secretKey = "iam"
+    }
+
+    kinesis {
+        endPointUrl = "https://kinesis.us-east-1.amazonaws.com"
+        in {
+            bad = "espoc-bad-events"
+            checkpointInterval = 1000 # In Millis
+            backoffTime = 500 # In Millis
+            retries = 10
+        }
+    }
+}

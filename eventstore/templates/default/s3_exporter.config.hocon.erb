@@ -1,0 +1,64 @@
+# This file (config.hocon.sample) contains a template with
+# configuration options for the EventStore S3 Exporter.
+#
+# To use, copy this to 'config.hocon' and modify the configuration options.
+
+# 's3_exporter' contains configuration options for the S3 Exporter.
+s3_exporter {
+    # The name of the application. This name will be used to name the Spark streaming job & the name of the DynamoDB
+    # table for storing Kinesis check-point. Hence, this should be unique for every instance within same AWS account.
+    appName = S3ExporterApp
+
+    # AWS credentials
+    #
+    # If both are set to 'cpf', a properties file on the classpath is used.
+    # http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/ClasspathPropertiesFileCredentialsProvider.html
+    #
+    # If both are set to 'iam', use AWS IAM Roles to provision credentials.
+    #
+    # If both are set to 'env', use environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+    aws {
+        accessKey = "iam"
+        secretKey = "iam"
+    }
+
+    fieldMapper {
+        baseUrl = "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/ff"
+    }
+
+    in {
+        kinesis {
+            endPointUrl = "https://kinesis.us-east-1.amazonaws.com"
+            stream = "espoc-enriched-events"
+            checkpointInterval = 1000
+        }
+    }
+    out {
+        kinesis {
+             bad = "espoc-bad-events"
+             RecordMaxBufferedTime = 1000
+        }
+        s3 {
+            region = "us-east-1"
+            buckets {
+                redshift {
+                    good = "espoc-events"
+                    goodPathPrefix = "redshift/enriched"
+                    bad = "espoc-events"
+                    badPathPrefix = "redshift/enriched-bad"
+                }
+
+                elasticsearch {
+                    good = "espoc-events"
+                    goodPathPrefix = "elasticsearch/enriched"
+                    bad = "espoc-events"
+                    badPathPrefix = "elasticsearch/enriched-bad"
+                }
+            }
+        }
+    }
+    shutdown {
+        sqsUrl = "https://sqs.us-east-1.amazonaws.com/046872521175/espoc_shutdown_s3exporter"
+        checkFrequency = 10000
+    }
+}

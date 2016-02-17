@@ -1,0 +1,42 @@
+queryapi {
+  server{
+    host = "0.0.0.0"
+    port = 8083
+  }
+  fieldMapper{
+    mappings_url = "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/mappings"
+    groupIdField = "group_id"
+    appIdField = "app_id"
+  }
+  elasticSearch {
+    cluster_name = "elasticsearch"
+    host = "ec2-54-210-82-225.compute-1.amazonaws.com"
+    port = 9300
+    index_pattern = "*"
+    appIdMapping="app_id"
+    groupIdMapping="group_id"
+  }
+  query_defaults{
+    from = 0
+    size = 10
+  }
+}
+
+# Akka has a variety of possible configuration options defined at
+# http://doc.akka.io/docs/akka/2.2.3/general/configuration.html.
+akka {
+  loglevel = DEBUG # 'OFF' for no logging, 'DEBUG' for all logging.
+  loggers = ["akka.event.slf4j.Slf4jLogger"]
+}
+
+spray.can.server {
+  remote-address-header = on
+
+  uri-parsing-mode = relaxed
+  raw-request-uri-header = on
+
+  # Define the maximum request length (the default is 2048)
+  parsing {
+    max-uri-length = 32768
+  }
+}

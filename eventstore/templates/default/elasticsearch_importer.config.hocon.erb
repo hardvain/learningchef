@@ -1,0 +1,29 @@
+elasticsearch_importer {
+    aws {
+        accessKey = "env"
+        secretKey = "env"
+    }
+    s3 {
+        in {
+            bucket = "espoc-events"
+            prefix = "elasticsearch/enriched"
+        }
+        archive {
+            bucket = "espoc-events"
+            prefix = "elasticsearch/archive"
+        }
+    }
+    elasticsearch {
+        hostName = "ec2-54-210-82-225.compute-1.amazonaws.com"
+        port = 9300
+        cluster = "elasticsearch"
+        index = "events"
+        type = "event"
+        bulk {
+            actions = 50
+            size = 1 # Byte size in MB
+            flush_interval = 5 # in seconds
+            concurrent_requests = 1
+        }
+    }
+}
