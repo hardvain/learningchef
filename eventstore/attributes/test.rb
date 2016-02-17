@@ -1,0 +1,1 @@
+node.default[:variable] = {:a => 1, :b => 2}
