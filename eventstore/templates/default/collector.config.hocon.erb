@@ -47,9 +47,9 @@ collector {
 
       # Data will be stored in the following stream.
       stream {
-        region: "us-east-1"
-        good: "espoc-raw-events"
-        bad: "espoc-bad-events"
+        region: <%= @aws_region%>
+        good: <%= @good_stream_name%>
+        bad: <%= @bad_stream_name%>
       }
 
       # Minimum and maximum backoff periods

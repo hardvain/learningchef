@@ -1,1 +1,1 @@
-node.default[:variable] = {:a => 1, :b => 2}
+node.default[:variables] = {:a => 1, :b => 2}

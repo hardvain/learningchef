@@ -15,9 +15,9 @@ bad_event_logger {
     }
 
     kinesis {
-        endPointUrl = "https://kinesis.us-east-1.amazonaws.com"
+        endPointUrl = <%= @kinesis_url%>
         in {
-            bad = "espoc-bad-events"
+            bad = <%= @bad_stream_name%>
             checkpointInterval = 1000 # In Millis
             backoffTime = 500 # In Millis
             retries = 10
