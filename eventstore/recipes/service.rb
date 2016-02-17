@@ -54,6 +54,6 @@ execute 'make run script executable' do
 end
 
 execute 'start app' do
-  user "node[:user]"
+  user "#{node[:user]}"
   command "service #{node[:module][:name]} restart"
 end
