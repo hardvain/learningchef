@@ -1,9 +1,7 @@
-file '/home/ec2-user/message' do
-  content node[:sample]
+template "/home/ec2-user/test" do
+  source 'conf.erb'
   mode '0755'
-end
-
-file '/home/ec2-user/message1' do
-  content node[:sample1]
-  mode '0755'
+  variables({
+     :test => 123
+  })
 end
