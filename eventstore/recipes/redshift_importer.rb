@@ -11,7 +11,7 @@ execute 'make run script executable' do
 end
 
 cron 'start cron' do
-  hour '5'
-  minute '0'
+  hour '0'
+  minute '5'
   command "#{node[:module][:path]}/bin/data_load.sh"
 end

@@ -1,0 +1,1 @@
+default[:sample] = "Sample in test"
