@@ -7,3 +7,4 @@ aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/04687252117
 
 aws emr list-steps --cluster-id  j-16ZTD99EVABOJ --step-states RUNNING --region us-east-1
 
+change the way variables are passed

@@ -1,5 +1,4 @@
-node.default[:module][:cluster_id] = ""
-node.default[:module][:variables]={
+node.default[:elasticsearch_importer][:variables]={
 	:s3 => {
 		:in => {
 			 :bucket => "espoc-events",

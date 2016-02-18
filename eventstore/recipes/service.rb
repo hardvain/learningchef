@@ -40,7 +40,7 @@ end
 template "#{node[:module][:path]}/conf/config.hocon" do
   source "#{node[:module][:name]}.config.hocon.erb"
   mode '0755'
-  variables(node[:module][:variables])
+  variables(node[node[:module][:name]][:variables])
 end
 
 execute 'make run script executable' do

@@ -1,0 +1,1 @@
+bin/chef-solo -c conf/solo.rb -j attributes.json -o recipe[eventstore::bad_event_logger],recipe[eventstore::collector],recipe[eventstore::field_mapper],recipe[eventstore::geoip_mapper],recipe[eventstore::queryapi]
