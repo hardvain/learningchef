@@ -28,14 +28,14 @@ enricher {
     }
 
     kinesis {
-        endPointUrl = "<%= @kinesis.endPointUrl%>"
+        endPointUrl = "<%= @kinesis_url%>"
         in {
-            raw = "<%= @kinesis.in.raw%>"
+            raw = "<%= @raw_event_stream_name%>"
             checkpointInterval = 1000
         }
         out {
-            enriched = "<%= @kinesis.out.enriched%>"
-            bad = "<%= @kinesis.out.bad%>"
+            enriched = "<%= @enriched_event_stream_name%>"
+            bad = "<%= @bad_event_stream_name%>"
             RecordMaxBufferedTime = 1000
         }
     }

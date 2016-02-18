@@ -11,8 +11,8 @@ queryapi {
   }
   elasticSearch {
     cluster_name = "elasticsearch"
-    host = "<%= @elasticsearch.host%>"
-    port = <%= @elasticsearch.port%>
+    host = "<%= @es_host%>"
+    port = <%= @es_port%>
     index_pattern = "*"
     appIdMapping="app_id"
     groupIdMapping="group_id"

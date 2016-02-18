@@ -29,31 +29,31 @@ s3_exporter {
 
     in {
         kinesis {
-            endPointUrl = "<%= @in.kinesis.end_point_url%>"
-            stream = "<%= @in.kinesis.stream%>"
+            endPointUrl = "<%= @kinesis_url%>"
+            stream = "<%= @enriched_events_stream%>"
             checkpointInterval = 1000
         }
     }
     out {
         kinesis {
-             bad = "<%= @out.kinesis.bad%>"
+             bad = "<%= @bad_events_stream%>"
              RecordMaxBufferedTime = 1000
         }
         s3 {
             region = "<%= @aws_region%>"
             buckets {
                 redshift {  
-                    good = "<%= @s3.redshift.good%>"
-                    goodPathPrefix = "<%= @s3.redshift.good_path_prefix%>"
-                    bad = "<%= @s3.redshift.bad%>"
-                    badPathPrefix = "<%= @s3.redshift.bad_path_prefix%>"
+                    good = "<%= @redshift_good_stream%>"
+                    goodPathPrefix = "<%= @redshift_good_path_prefix%>"
+                    bad = "<%= @redshift_bad_stream%>"
+                    badPathPrefix = "<%= @redshift_bad_path_prefix%>"
                 }
 
                 elasticsearch {
-                    good = "<%= @s3.elasticsearch.good%>"
-                    goodPathPrefix = "<%= @s3.elasticsearch.good_path_prefix%>"
-                    bad = "<%= @s3.elasticsearch.bad%>"
-                    badPathPrefix = "<%= @s3.elasticsearch.bad_path_prefix%>"
+                    good = "<%= @es_good_stream%>"
+                    goodPathPrefix = "<%= @es_good_path_prefix%>"
+                    bad = "<%= @es_bad_stream%>"
+                    badPathPrefix = "<%= @es_bad_path_prefix%>"
                 }
             }
         }

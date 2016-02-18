@@ -3,30 +3,16 @@ node.default['module']['queue_url'] = "https://sqs.us-east-1.amazonaws.com/04687
 node.default[:s3_exporter][:variables]={
 	:field_mapper_url => "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/ff",
 	:aws_region => node.default[:aws_region],
-	:in => {
-		:kinesis => {
-			:end_point_url => "https://kinesis.us-east-1.amazonaws.com",
-			:stream => "espoc-enriched-events"
-		}
-	},
-	:out => {
-		:kinesis => {
-			:bad => "espoc-bad-events"
-		},
-		:s3 => {
-			:redshift => {
-				:good => "espoc-events",
-				:good_path_prefix => "redshift/enriched",
-				:bad => "espoc-events",
-				:bad_path_prefix => "redshift/enriched-bad"
-			},
-			:elasticsearch => {
-				:good => "espoc-events",
-				:good_path_prefix => "elasticsearch/enriched",
-				:bad => "espoc-events",
-				:bad_path_prefix => "elasticsearch/enriched-bad"
-			}
-		}
-	},
+	:kinesis_url => "https://kinesis.us-east-1.amazonaws.com",
+	:enriched_events_stream => "espoc-enriched-events",
+	:bad_events_stream => "espoc-bad-events",
+	:redshift_good_stream => "espoc-events",
+	:redshift_good_path_prefix => "redshift/enriched",
+	:redshift_bad_stream => "espoc-events",
+	:redshift_bad_path_prefix => "redshift/enriched-bad",
+	:es_good_stream => "espoc-events",
+	:es_good_path_prefix => "elasticsearch/enriched",
+	:es_bad_stream => "espoc-events",
+	:es_bad_path_prefix => "elasticsearch/enriched-bad",
 	:sqs_url => node.default['module']['queue_url'] 
 }
