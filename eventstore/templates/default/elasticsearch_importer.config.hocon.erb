@@ -5,17 +5,17 @@ elasticsearch_importer {
     }
     s3 {
         in {
-            bucket = "espoc-events"
-            prefix = "elasticsearch/enriched"
+            bucket = <%= @s3.in.bucket%>
+            prefix = <%= @s3.in.prefix%>
         }
         archive {
-            bucket = "espoc-events"
-            prefix = "elasticsearch/archive"
+            bucket = <%= @s3.archive.bucket%>
+            prefix = <%= @s3.archive.prefix%>
         }
     }
     elasticsearch {
-        hostName = "ec2-54-210-82-225.compute-1.amazonaws.com"
-        port = 9300
+        hostName = <%= @elasticsearch.hostName%>
+        port = <%= @elasticsearch.port%>
         cluster = "elasticsearch"
         index = "events"
         type = "event"

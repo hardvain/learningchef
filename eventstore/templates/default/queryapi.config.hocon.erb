@@ -4,14 +4,14 @@ queryapi {
     port = 8083
   }
   fieldMapper{
-    mappings_url = "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/mappings"
+    mappings_url = <%= @field_mapper_url%>
     groupIdField = "group_id"
     appIdField = "app_id"
   }
   elasticSearch {
     cluster_name = "elasticsearch"
-    host = "ec2-54-210-82-225.compute-1.amazonaws.com"
-    port = 9300
+    host = <%= @elasticsearch.host%>
+    port = <%= @elasticsearch.port%>
     index_pattern = "*"
     appIdMapping="app_id"
     groupIdMapping="group_id"
