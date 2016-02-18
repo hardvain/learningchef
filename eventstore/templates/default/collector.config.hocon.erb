@@ -48,9 +48,9 @@ collector {
 
       # Data will be stored in the following stream.
       stream {
-        region: <%= @aws_region%>
-        good: <%= @good_stream_name%>
-        bad: <%= @bad_stream_name%>
+        region: "<%= @aws_region%>"
+        good: "<%= @good_stream_name%>"
+        bad: "<%= @bad_stream_name%>"
       }
 
       # Minimum and maximum backoff periods

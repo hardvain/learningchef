@@ -9,7 +9,7 @@ field_mapper {
     secret_key = "iam"
   }
   dynamodb {
-    table_name = <%= @table_name%>
+    table_name = "<%= @table_name%>"
     field_names {
       partition_key = "_ga"
       sort_key = "_eventName"

@@ -24,42 +24,42 @@ s3_exporter {
     }
 
     fieldMapper {
-        baseUrl = <%= @field_mapper_url%>
+        baseUrl = "<%= @field_mapper_url%>"
     }
 
     in {
         kinesis {
-            endPointUrl = <%= @in.kinesis.end_point_url%>
-            stream = <%= @in.kinesis.stream%>
+            endPointUrl = "<%= @in.kinesis.end_point_url%>"
+            stream = "<%= @in.kinesis.stream%>"
             checkpointInterval = 1000
         }
     }
     out {
         kinesis {
-             bad = <%= @out.kinesis.bad%>
+             bad = "<%= @out.kinesis.bad%>"
              RecordMaxBufferedTime = 1000
         }
         s3 {
-            region = <%= @aws_region%>
+            region = "<%= @aws_region%>"
             buckets {
                 redshift {  
-                    good = <%= @s3.redshift.good%>
-                    goodPathPrefix = <%= @s3.redshift.good_path_prefix%>
-                    bad = <%= @s3.redshift.bad%>
-                    badPathPrefix = <%= @s3.redshift.bad_path_prefix%>
+                    good = "<%= @s3.redshift.good%>"
+                    goodPathPrefix = "<%= @s3.redshift.good_path_prefix%>"
+                    bad = "<%= @s3.redshift.bad%>"
+                    badPathPrefix = "<%= @s3.redshift.bad_path_prefix%>"
                 }
 
                 elasticsearch {
-                    good = <%= @s3.elasticsearch.good%>
-                    goodPathPrefix = <%= @s3.elasticsearch.good_path_prefix%>
-                    bad = <%= @s3.elasticsearch.bad%>
-                    badPathPrefix = <%= @s3.elasticsearch.bad_path_prefix%>
+                    good = "<%= @s3.elasticsearch.good%>"
+                    goodPathPrefix = "<%= @s3.elasticsearch.good_path_prefix%>"
+                    bad = "<%= @s3.elasticsearch.bad%>"
+                    badPathPrefix = "<%= @s3.elasticsearch.bad_path_prefix%>"
                 }
             }
         }
     }
     shutdown {
-        sqsUrl = <%= @sqs_url%>
+        sqsUrl = "<%= @sqs_url%>"
         checkFrequency = 10000
     }
 }

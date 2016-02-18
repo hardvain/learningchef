@@ -6,16 +6,16 @@ elasticsearch_importer {
     }
     s3 {
         in {
-            bucket = <%= @s3.in.bucket%>
-            prefix = <%= @s3.in.prefix%>
+            bucket = "<%= @s3.in.bucket%>"
+            prefix = "<%= @s3.in.prefix%>"
         }
         archive {
-            bucket = <%= @s3.archive.bucket%>
-            prefix = <%= @s3.archive.prefix%>
+            bucket = "<%= @s3.archive.bucket%>"
+            prefix = "<%= @s3.archive.prefix%>"
         }
     }
     elasticsearch {
-        hostName = <%= @elasticsearch.hostName%>
+        hostName = "<%= @elasticsearch.hostName%>"
         port = <%= @elasticsearch.port%>
         cluster = "elasticsearch"
         index = "events"

@@ -12,7 +12,7 @@ enricher {
 
     anonOctets = 1
 
-    geoMapperUrl = <%= @geoMapperUrl%>
+    geoMapperUrl = "<%= @geoMapperUrl%>"
 
     # AWS credentials
     #
@@ -28,19 +28,19 @@ enricher {
     }
 
     kinesis {
-        endPointUrl = <%= @kinesis.endPointUrl%>
+        endPointUrl = "<%= @kinesis.endPointUrl%>"
         in {
-            raw = <%= @kinesis.in.raw%>
+            raw = "<%= @kinesis.in.raw%>"
             checkpointInterval = 1000
         }
         out {
-            enriched = <%= @kinesis.out.enriched%>
-            bad = <%= @kinesis.out.bad%>
+            enriched = "<%= @kinesis.out.enriched%>"
+            bad = "<%= @kinesis.out.bad%>"
             RecordMaxBufferedTime = 1000
         }
     }
     shutdown {
-        sqsUrl = <%= @sqsUrl%>
+        sqsUrl = "<%= @sqsUrl%>"
         checkFrequency = 10000
     }
 }
