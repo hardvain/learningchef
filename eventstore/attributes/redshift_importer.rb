@@ -1,1 +1,1 @@
-node.default['module']['name'] = "redshift_importer"
+node.normal['module']['name'] = "redshift_importer"

@@ -1,4 +1,4 @@
-node.default['module']['name'] = "queryapi"
+node.normal['module']['name'] = "queryapi"
 node.default[:module][:variables]={
 	:field_mapper_url => "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/mappings",
 	:elasticsearch => {

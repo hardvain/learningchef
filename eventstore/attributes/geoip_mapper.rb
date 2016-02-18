@@ -1,1 +1,1 @@
-node.default['module']['name'] = "geoip_mapper"
+node.normal['module']['name'] = "geoip_mapper"
