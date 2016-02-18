@@ -29,5 +29,5 @@ node.default[:module][:variables]={
 			}
 		}
 	},
-	:sqs_url => "https://sqs.us-east-1.amazonaws.com/046872521175/espoc_shutdown_s3exporter"
+	:sqs_url => node.default['module']['queue_url'] 
 }

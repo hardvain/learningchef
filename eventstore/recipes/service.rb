@@ -1,8 +1,3 @@
-#
-# Cookbook Name:: aws
-# Recipe:: default
-#
-# Copyright (c) 2016 The Authors, All Rights Reserved.
 
 template "/etc/init.d/#{node[:module][:name]}" do
   source 'init_script.erb'
@@ -49,11 +44,10 @@ template "#{node[:module][:path]}/conf/config.hocon" do
 end
 
 execute 'make run script executable' do
-  user "root"
   command "chmod u+x #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh"
 end
 
 execute 'start app' do
-  user "#{node[:user]}"
+  user node[:user]
   command "service #{node[:module][:name]} restart"
 end

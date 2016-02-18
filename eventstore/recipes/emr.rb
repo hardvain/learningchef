@@ -1,3 +1,5 @@
+node.default[:module][:jar_location] = "s3://espoc-apps/#{node[:module][:name]}/#{node[:module][:name]}.jar" 
+node.default[:module][:conf_location] = "s3://espoc-apps/#{node[:module][:name]}/config.hocon"
 package 'unzip'
 package 'jq'
 
@@ -22,16 +24,20 @@ execute 'unzip' do
   command "unzip -o #{node[:module][:path]}.zip -d #{node[:module][:path]}"
 end
 
-remote_file "#{node[:module][:path]}/conf/config.hocon" do
-  source "file://#{node[:module][:path]}/conf/config.hocon.sample"
+
+template "#{node[:module][:path]}/conf/config.hocon" do
+  source "#{node[:module][:name]}.config.hocon.erb"
+  mode '0755'
+  variables(node[:module][:variables])
 end
 
+
 execute 'upload jar to s3' do
-  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar s3://espoc-apps/#{node[:module][:name]}/#{node[:module][:name]}.jar --acl public-read-write"
+  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar   --acl public-read-write"
 end
 
 execute 'upload config to s3' do
-  command "aws s3 cp #{node[:module][:path]}/conf/config.hocon s3://espoc-apps/#{node[:module][:name]}/config.hocon --acl public-read-write"
+  command "aws s3 cp #{node[:module][:path]}/conf/config.hocon #{node[:module][:conf_location] } --acl public-read-write"
 end
 
 template "#{node[:module][:path]}/emr.sh" do
@@ -39,7 +45,8 @@ template "#{node[:module][:path]}/emr.sh" do
   mode '0755'
   variables({
      :cluster_id => "#{node[:module][:cluster_id]}",
-     :queue_url => "#{node[:module][:queue_url]}"
+     :queue_url => "#{node[:module][:queue_url]}",
+     :aws_region => node[:module][:aws_region]
   })
 end
 
@@ -48,10 +55,12 @@ execute 'make run script executable' do
 end
 
 execute 'stop running steps' do
+  user node[:user]
   command "#{node[:module][:path]}/emr.sh"
 end
 
 
 execute 'add step to emr' do
-  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh > #{node[:module][:path]}/step.json"
+  user node[:user]
+  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh #{node[:module][:cluster_id]} #{node[:module][:jar_location]} #{node[:module][:conf_location]}"
 end
