@@ -25,6 +25,10 @@ execute 'unzip' do
 end
 
 
+execute 'Make module path accessible' do
+  command "chmod 757 -R #{node[:module][:path]}"
+end
+
 template "#{node[:module][:path]}/conf/config.hocon" do
   source "#{node[:module][:name]}.config.hocon.erb"
   mode '0755'
@@ -33,7 +37,7 @@ end
 
 
 execute 'upload jar to s3' do
-  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar   --acl public-read-write"
+  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar  #{node[:module][:jar_location] } --acl public-read-write"
 end
 
 execute 'upload config to s3' do
@@ -46,7 +50,7 @@ template "#{node[:module][:path]}/emr.sh" do
   variables({
      :cluster_id => "#{node[:module][:cluster_id]}",
      :queue_url => "#{node[:module][:queue_url]}",
-     :aws_region => node[:module][:aws_region]
+     :aws_region => node[:aws_region]
   })
 end
 
@@ -55,7 +59,6 @@ execute 'make run script executable' do
 end
 
 execute 'stop running steps' do
-  user node[:user]
   command "#{node[:module][:path]}/emr.sh"
 end
 
