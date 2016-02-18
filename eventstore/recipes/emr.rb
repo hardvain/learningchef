@@ -62,8 +62,7 @@ execute 'stop running steps' do
   command "#{node[:module][:path]}/emr.sh"
 end
 
-
 execute 'add step to emr' do
   user node[:user]
-  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh #{node[:module][:cluster_id]} #{node[:module][:jar_location]} #{node[:module][:conf_location]}"
+  command "sh #{node[:module][:path]}/bin/run_#{node[:module][:name]}.sh #{node[:module][:cluster_id]} #{node[:module][:jar_location]} #{node[:module][:conf_location]} #{node[:aws_region]}"
 end
