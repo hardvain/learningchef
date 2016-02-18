@@ -1,3 +1,5 @@
+node.default['module']['name'] = "elasticsearch_importer"
+
 include_recipe 'eventstore::cron'
 
 

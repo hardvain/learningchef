@@ -1,4 +1,3 @@
-node.normal['module']['name'] = "elasticsearch_importer"
 node.default[:module][:cluster_id] = ""
 node.default[:module][:variables]={
 	:s3 => {

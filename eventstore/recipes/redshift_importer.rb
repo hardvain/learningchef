@@ -1,3 +1,5 @@
+node.default['module']['name'] = "redshift_importer"
+
 include_recipe 'eventstore::cron'
 
 execute 'make run script executable' do
