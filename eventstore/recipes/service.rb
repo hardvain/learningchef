@@ -32,6 +32,11 @@ execute 'unzip' do
   command "unzip -o #{node[:module][:path]}.zip -d #{node[:module][:path]}"
 end
 
+execute 'give access to log folder' do
+  user node[:user]
+  command "chmod 666 #{node[:log_path]}"
+end
+
 
 execute 'Make module path accessible' do
   command "chmod 757 -R #{node[:module][:path]}"
