@@ -26,3 +26,9 @@ execute 'Make module path accessible' do
   command "chmod 757 -R #{node[:module][:path]}"
 end
 
+cron 'start cron' do
+  minute '1'
+  hour '*'
+  weekday '*'
+  command "sh #{node[:module][:path]}/#{node[node[:module][:name]][:cron_path]}"
+end

@@ -1,7 +1,7 @@
-
+queue_url = "https://sqs.us-east-1.amazonaws.com/046872521175/espoc_shutdown_s3exporter"
 node.default[:s3_exporter][:ci] = {
-	:cluster_id => "j-16ZTD99EVABOJ",
-	:queue_url => "https://sqs.us-east-1.amazonaws.com/046872521175/espoc_shutdown_s3exporter",
+	:cluster_id => "j-5ZYIVO6JW4BS",
+	:queue_url => queue_url,
 	:variables =>{
 		:field_mapper_url => "http://ec2-52-91-80-204.compute-1.amazonaws.com:9090/v1/ff",
 		:aws_region => node.default[:aws_region],
@@ -16,7 +16,7 @@ node.default[:s3_exporter][:ci] = {
 		:es_good_path_prefix => "elasticsearch/enriched",
 		:es_bad_stream => "espoc-events",
 		:es_bad_path_prefix => "elasticsearch/enriched-bad",
-		:sqs_url => node.default['module']['queue_url'] 
+		:sqs_url => queue_url 
 	}
 }
 node.default[:s3_exporter] = node.default[:bad_event_logger][node[:env]]

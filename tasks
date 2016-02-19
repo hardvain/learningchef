@@ -10,3 +10,4 @@ aws emr list-steps --cluster-id  j-16ZTD99EVABOJ --step-states RUNNING --region 
 change the way variables are passed
 
 make log folder accessible
+logs for services
