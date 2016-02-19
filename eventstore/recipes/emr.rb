@@ -25,7 +25,7 @@ execute 'unzip' do
 end
 
 execute 'give access to log folder' do
-  command "chmod 666 #{node[:log_path]}"
+  command "chmod 757 #{node[:log_path]}"
 end
 
 
