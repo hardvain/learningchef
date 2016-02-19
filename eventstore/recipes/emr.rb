@@ -52,8 +52,8 @@ template "#{node[:module][:path]}/emr.sh" do
   source 'emr.erb'
   mode '0755'
   variables({
-     :cluster_id => "#{node[:module][:cluster_id]}",
-     :queue_url => "#{node[:module][:queue_url]}",
+     :cluster_id => "#{node[node[:module][:name]][:cluster_id]}",
+     :queue_url => "#{node[node[:module][:name]][:queue_url]}",
      :aws_region => node[:aws_region]
   })
 end
