@@ -3,3 +3,5 @@ node.default[:queryapi][:variables]={
 	:es_host => "ec2-54-210-82-225.compute-1.amazonaws.com",
 	:es_port => 9300
 }
+
+node.default[:queryapi] = node.default[:queryapi][node[:env]]

@@ -9,3 +9,5 @@ node.default[:enricher][:variables]={
     :enriched_event_stream_name => "espoc-enriched-events",
     :sqsUrl => node.default[:module][:queue_url]
 }
+
+node.default[:enricher] = node.default[:enricher][node[:env]]

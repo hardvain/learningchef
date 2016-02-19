@@ -18,3 +18,5 @@ node.default[:s3_exporter][:variables]={
 	:es_bad_path_prefix => "elasticsearch/enriched-bad",
 	:sqs_url => node.default['module']['queue_url'] 
 }
+s3
+node.default[:s3_exporter] = node.default[:bad_event_logger][node[:env]]
