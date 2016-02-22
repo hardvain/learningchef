@@ -1,4 +1,1 @@
-
-execute 'Install RVM' do
-  command "gem install bunlder"
-end
+include_recipe 'rvm::default'
