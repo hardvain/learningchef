@@ -7,7 +7,6 @@ directory "#{node[:module][:path]}" do
   mode '0644'
   recursive true
   action :delete
-  not_if { !::File.directory?(::File.join(node[:module][:path], node[:module][:name])) }
 end
 
 directory "#{node[:module][:path]}" do
