@@ -15,7 +15,7 @@ directory "#{node[:module][:path]}" do
 end
 
 execute 'copy from s3' do
-  command "aws s3 cp s3://espoc-apps#{node[:module][:name]}.zip #{node[:module][:path]}.zip"
+  command "aws s3 cp s3://espoc-apps/#{node[:module][:name]}.zip #{node[:module][:path]}.zip"
 end
 
 execute 'unzip' do
