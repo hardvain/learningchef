@@ -22,10 +22,9 @@ directory "#{node[:module][:path]}" do
   mode '0644'
 end
 
-remote_file "#{node[:module][:path]}.zip" do
-  source "https://s3.amazonaws.com/espoc-apps/#{node[:module][:name]}.zip"
-  action :create
-  mode '0644'
+
+execute 'copy from s3' do
+  command "aws s3 cp s3://espoc-apps#{node[:module][:name]}.zip #{node[:module][:path]}.zip"
 end
 
 execute 'unzip' do

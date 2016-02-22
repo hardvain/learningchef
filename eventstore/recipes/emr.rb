@@ -14,10 +14,8 @@ directory "#{node[:module][:path]}" do
   mode '0644'
 end
 
-remote_file "#{node[:module][:path]}.zip" do
-  source "https://s3.amazonaws.com/espoc-apps/#{node[:module][:name]}.zip"
-  action :create
-  mode '0644'
+execute 'copy from s3' do
+  command "aws s3 cp s3://espoc-apps#{node[:module][:name]}.zip #{node[:module][:path]}.zip"
 end
 
 execute 'unzip' do
@@ -41,11 +39,11 @@ end
 
 
 execute 'upload jar to s3' do
-  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar  #{node[:module][:jar_location] } --acl public-read-write"
+  command "aws s3 cp #{node[:module][:path]}/lib/#{node[:module][:name]}*.jar  #{node[:module][:jar_location] } "
 end
 
 execute 'upload config to s3' do
-  command "aws s3 cp #{node[:module][:path]}/conf/config.hocon #{node[:module][:conf_location] } --acl public-read-write"
+  command "aws s3 cp #{node[:module][:path]}/conf/config.hocon #{node[:module][:conf_location] } "
 end
 
 template "#{node[:module][:path]}/emr.sh" do
