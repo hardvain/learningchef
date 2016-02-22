@@ -6,3 +6,5 @@ added AmazonElasticMapReduceFullAccess to opsworks-ec2-user
 make log folder accessible
 logs for services
 check task descriptions
+
+rvm is from github
